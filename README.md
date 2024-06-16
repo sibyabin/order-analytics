@@ -9,8 +9,7 @@
 - [Makefile utilities](#makefile-utilities)
 - [How to run locally?](#how-to-run-locally)
 - [Other useful commands](#other-useful-commands)
-- [](#)
-- [](#)
+- [Author](#author)
 
 ## Pre-requisites
 - Python 3.9
@@ -19,10 +18,12 @@
 ## Project deliverables
 
 - Datamodel
-- ETL Specification Document 
+- ETL Specification Document
 - Python ETL Code
 - Documentation
 
+### Data model diagrams
+![orders mart](docs/assets/orders_mart.svg)
 ## Makefile utilities
 
 This project comes with a `Makefile` that contains a number of useful utility.
@@ -33,13 +34,14 @@ Usage: make <target>
 
 Targets:
 install           ## Virtual environment setup
+test              ## Run tests and generate coverage report.
 run               ## Run the project.
-build             ## Build package.
-docs              ## Build the documentation.
 clean             ## Clean unused files.
+
 fmt               ## Format code using black & isort.
 lint              ## Run pep8, black, mypy linters.
-test              ## Run tests and generate coverage report.
+build             ## Build package.
+docs              ## Build the documentation.
 ```
 
 ## How to run locally?
@@ -47,7 +49,10 @@ test              ## Run tests and generate coverage report.
 Below find the step by step instructions to run the code locally
 
 ### Clone the repository
-
+```bash
+git clone https://github.com/sibyabin/order-analytics.git
+cd order-analytics
+```
 ### Setting up your own virtual environment
 
 Run `make install` to create a virtual environment `venv` locally and then install all the package requirements to it.
@@ -112,6 +117,14 @@ Run `make run` to run the code. This will
 | ------ | ------ |
 | `make fmt` | To format the code |
 | `make lint` | To run the linter |
-| `make docs` | To build the docs. |
+| `make docs` | To build the docs.|
 
----
+## Project Links
+
+- [Issues](https://github.com/sibyabin/order-analytics/issues)
+
+- [Project Board](https://github.com/users/sibyabin/projects/3/views/1?layout=board)
+
+## Author
+
+- [Siby Abin Thomas](https://www.github.com/sibyabin)
