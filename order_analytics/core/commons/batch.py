@@ -41,7 +41,7 @@ class Batch:
         Returns:
             str: A string representation of the Batch object.
         """
-        return f"(batch_id={batch_id}, batch_date={batch_date} batch_status={batch_status}, batch_starttime={batch_starttime})"
+        return f"(batch_id={self.batch_id}, batch_date={self.batch_date} batch_status={self.batch_status}, batch_starttime={self.batch_starttime})"
 
 
     def create_batch(self):
@@ -94,7 +94,6 @@ class Batch:
                                                    FROM batch_information
                                                 WHERE batch_date = '{self.batch_date}'
                                         """)[0]
-            self.logger.info(f"BATCH_NUMBER={batch_num}")
         except sqlite3.OperationalError as e:
             if 'no such table' in str(e):
                 self.logger.info("The table batch_information does not exist.")

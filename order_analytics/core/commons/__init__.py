@@ -1,1 +1,0 @@
-print("from init -common")

@@ -16,7 +16,7 @@ class Utils:
         """
         self.logger = logger
         self.db = db
-        logger.info("Message from Utils Init")
+
 
 
     def __str__(self) -> str:

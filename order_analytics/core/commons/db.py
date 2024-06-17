@@ -3,7 +3,7 @@ This module provides a simple dbmanager class that can be used for sqlite db int
 """
 import sqlite3
 from pathlib import Path
-from typing import Dict
+from typing import Dict, Tuple, List
 
 
 class DbManager:
@@ -17,8 +17,6 @@ class DbManager:
         Initializes the Database manager class object
         """
         self.database = Path('orders.db')
-        logger.info("Message from DbManager Init")
-        logger.info(f"Database = {self.database}")
 
 
     def __repr__(self) -> str:
@@ -28,7 +26,7 @@ class DbManager:
         Returns:
             str: A string representation of the DbManager object.
         """
-        return "Custom message"
+        return "TODO : for later extensions"
 
 
     def __str__(self) -> str:
@@ -38,17 +36,19 @@ class DbManager:
         Returns:
             str: A string representation of the DbManager object.
         """
-        return "Custom message STR"
+        return "TODO : for later extensions"
 
-    def _get_connection(self, database):
+    def _get_connection(self, database) -> sqlite3.Connection:
         """
-        TODO
+        Returns a database connection.
+
+        Returns:
+            sqlite3.Connection : A database connection.
         """
         with sqlite3.connect(database) as conn:
-            print(f"conn={conn}")
             return conn
 
-    def run_sql_with_values(self,sql: str,values: Dict):
+    def run_sql_with_values(self,sql: str,values: Dict) -> None:
         """
         TODO
         """
@@ -57,7 +57,7 @@ class DbManager:
             cursor.execute(sql,values)
             conn.commit()
 
-    def run_sql(self,sql: str):
+    def run_sql(self,sql: str) -> None:
         """
         TODO
         """
@@ -66,34 +66,20 @@ class DbManager:
             cursor.execute(sql)
             conn.commit()
 
-    def select (self,sql):
+    def select (self,sql: str) -> [Tuple]:
         """
         TODO
         """
-        print("within select function")
         with self._get_connection(self.database) as conn:
             cursor = conn.cursor()
             cursor.execute(sql)
         return cursor.fetchall()
 
-    def select_one (self,sql):
+    def select_one(self,sql: str) -> Tuple:
         """
         TODO
         """
-        print("within select_one function")
         with self._get_connection(self.database) as conn:
             cursor = conn.cursor()
             cursor.execute(sql)
         return cursor.fetchone()
-
-    def _sample_insert(self):
-        """
-        TODO
-
-        """
-        conn = self._get_connection(self.database)
-        cursor = conn.cursor()
-        cursor.execute("CREATE TABLE IF NOT EXISTS movie(title, year, score)")
-        cursor.execute("INSERT INTO movie VALUES ('ABC', 1975, 8.2),('XYZ', 1971, 7.5)")
-        conn.commit()
-        print(self.select("SELECT * FROM movie"))

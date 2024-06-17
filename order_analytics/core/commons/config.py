@@ -80,6 +80,6 @@ class Config:
         return project_home
 
 
-# Usage
-config: Config = Config()
-print(config.configs)
+# # Usage
+# config: Config = Config()
+# print(config.configs)

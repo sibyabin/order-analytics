@@ -1,4 +1,8 @@
+"""
+ TODO:
+"""
 #!/usr/bin/env python
+
 import argparse
 import logging
 import os
@@ -39,10 +43,15 @@ class Loader:
 
 
 def main():
-    print("Hello from main() in main.py")
+    """
+    main function and entry point of the etl load process
+    """
     loader = Loader()
+    loader.logger.info("==================BATCH START =================")
     batch = loader.batch
     batch.create_batch()
+    loader.logger.info(str(batch))
+    loader.logger.info("==================BATCH END ===================")
 
 if __name__ == "__main__":
     main()
