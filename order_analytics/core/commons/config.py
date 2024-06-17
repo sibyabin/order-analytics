@@ -7,7 +7,7 @@ import sys
 from configparser import ConfigParser
 from typing import Dict
 
-from core.common.logger import Logger
+from core.commons.logger import Logger
 
 
 class Config:

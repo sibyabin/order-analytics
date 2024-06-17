@@ -39,6 +39,16 @@ class Logger:
         # Add ch to logger
         self.logger.addHandler(ch)
 
+
+    def __str__(self) -> str:
+        """
+        Returns a string representation of the Logger.
+
+        Returns:
+            str: A string representation of the Logger.
+        """
+        return "Custom message from Logger STR"
+
     def get_logger(self) -> logging.Logger:
         """
         Returns the logger instance.
@@ -47,9 +57,3 @@ class Logger:
             logging.Logger: The logger instance.
         """
         return self.logger
-
-
-# # Usage example
-logger = Logger(__name__).get_logger()
-logger.info("This is an info message")
-# logger.error("This is an error message")
