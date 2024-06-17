@@ -32,22 +32,17 @@ class Loader:
 
     def __str__(self) -> str:
         """
-        Returns a string representation of the Loader.
-
-        Returns:
-            str: A string representation of the Loader object.
+        TODO : for any later implementations
         """
-        return f"Custom Message from Loader"
+        pass
 
 
 
 def main():
     print("Hello from main() in main.py")
     loader = Loader()
-    print(str(loader))
     batch = loader.batch
     batch.create_batch()
-    # loader.logger.info(batch.batch_info)
 
 if __name__ == "__main__":
     main()
