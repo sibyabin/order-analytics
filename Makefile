@@ -5,6 +5,12 @@
 VENV = venv
 PROJECT = order_analytics
 
+# set the project variables to the current directory
+export PROJECT_HOME := $(CURDIR)/order_analytics
+# export DATABASE_PATH := $(PROJECT_HOME)/database
+# export SQL_PATH := $(PROJECT_HOME)/sqls
+# export FILES_PATH := $(PROJECT_HOME)/files
+
 ifeq ($(shell uname), Linux)
 	ENV_PREFIX = $(VENV)/bin
 	CMD = source $(VENV)/bin/activate
@@ -24,10 +30,13 @@ help:             				## Show the help.
 	@echo "Targets:"
 	@fgrep "##" Makefile | fgrep -v fgrep
 
+print:             				## print the configs
+	@echo PROJECT_HOME = $(PROJECT_HOME)
+
 install: requirements-test.txt			## Virtual environment setup
 	@echo "Going to setup environment"
-	python -m venv $(VENV) && . $(CMD) && $(PYTHON) -m pip install --upgrade pip setuptools 
-	$(PIP) install -r requirements-test.txt 
+	python -m venv $(VENV) && . $(CMD) && $(PYTHON) -m pip install --upgrade pip setuptools
+	$(PIP) install -r requirements-test.txt
 	$(ENV_PREFIX)/pip install -e .[test]
 	@echo "Setup completed"
 
@@ -37,13 +46,13 @@ activate: install
 
 fmt:              				## Format code using black & isort.
 	$(ENV_PREFIX)/isort $(PROJECT)/
-	$(ENV_PREFIX)/black -l 79 $(PROJECT)/
-	$(ENV_PREFIX)/black -l 79 tests/
+	$(ENV_PREFIX)/black -l 100 $(PROJECT)/
+	$(ENV_PREFIX)/black -l 100 tests/
 
 lint:             				## Run linters.
 	$(ENV_PREFIX)/flake8 $(PROJECT)/
-	$(ENV_PREFIX)/black -l 79 --check $(PROJECT)/
-	$(ENV_PREFIX)/black -l 79 --check tests/
+	$(ENV_PREFIX)/black -l 120 --check $(PROJECT)/
+	$(ENV_PREFIX)/black -l 120 --check tests/
 	$(ENV_PREFIX)/mypy --ignore-missing-imports $(PROJECT)/
 
 test: lint        				## Run tests and generate coverage.
@@ -74,5 +83,3 @@ clean:            				## Clean unused files.
 docs:            				## Build the documentation.
 	@echo "building documentation ..."
 	@$(ENV_PREFIX)/mkdocs build
-
-##URL="site/index.html"; xdg-open $$URL || sensible-browser $$URL || x-www-browser $$URL || gnome-open $$URL || open $$URL

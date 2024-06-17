@@ -24,11 +24,12 @@
 
 ### Data model diagrams
 ![orders mart](docs/assets/orders_mart.svg)
-## Makefile utilities
 
-This project comes with a `Makefile` that contains a number of useful utility.
+## Makefile options
 
-```bash 
+This project comes with a `Makefile` that contains a number of target options to carry out different activities using simple commands.
+
+```bash
 ❯ make
 Usage: make <target>
 
@@ -49,10 +50,12 @@ docs              ## Build the documentation.
 Below find the step by step instructions to run the code locally
 
 ### Clone the repository
+
 ```bash
 git clone https://github.com/sibyabin/order-analytics.git
 cd order-analytics
 ```
+
 ### Setting up your own virtual environment
 
 Run `make install` to create a virtual environment `venv` locally and then install all the package requirements to it.
@@ -97,14 +100,15 @@ Run `make test` to run the tests.
 ### Run the code
 
 Run `make run` to run the code. This will
-- create databases and tables(if not exists)
-- load data to staging
-- load data from staging to mart tables
-- store exception records to exception schema tables
+
+- Create databases and tables (if not exists already)
+- Load data to staging
+- Load data from staging to mart tables
+- Store exception records to exception schema tables
 
 ### Cleaning the project
 
-`make clean` will remove 
+`make clean` will remove
 
 - logs
 - site directory
@@ -124,6 +128,11 @@ Run `make run` to run the code. This will
 - [Issues](https://github.com/sibyabin/order-analytics/issues)
 
 - [Project Board](https://github.com/users/sibyabin/projects/3/views/1?layout=board)
+
+## To do
+
+- Batch status dashboard
+-
 
 ## Author
 
