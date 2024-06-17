@@ -29,12 +29,9 @@ class Batch:
 
     def __repr__(self) -> str:
         """
-        Returns a string representation of the Batch object.
-
-        Returns:
-            str: A string representation of the Batch object.
+        TODO : for any later implementations
         """
-        return "Custom message from Batch"
+        pass
 
 
     def __str__(self) -> str:
@@ -44,7 +41,7 @@ class Batch:
         Returns:
             str: A string representation of the Batch object.
         """
-        return "Custom message Batch STR"
+        return f"(batch_id={batch_id}, batch_date={batch_date} batch_status={batch_status}, batch_starttime={batch_starttime})"
 
 
     def create_batch(self):

@@ -42,12 +42,9 @@ class Logger:
 
     def __str__(self) -> str:
         """
-        Returns a string representation of the Logger.
-
-        Returns:
-            str: A string representation of the Logger.
+        TODO : for any later implementations
         """
-        return "Custom message from Logger STR"
+        pass
 
     def get_logger(self) -> logging.Logger:
         """
