@@ -8,6 +8,7 @@ import logging
 import os
 import pprint
 import sys
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict
@@ -34,7 +35,7 @@ class Loader:
         """
         self.logger = logger
         self.config = conf
-        self.db = DbManager(self.logger)
+        self.db = DbManager(self.logger,self.config)
         self.batch = Batch(self.logger, self.db)
         self.utils = Utils(self.logger, self.config, self.db, self.batch)
 
@@ -80,8 +81,8 @@ def main():
     source_filename = args["filename"].strip()
 
     logger.info("==================BATCH START =================")
-    logger.info(f"environment={environment}")
-    logger.info(f"filename to be processed is {source_filename}")
+    logger.info(f"Environment is `{environment}`")
+    logger.info(f"Filename to be processed is `{source_filename}`")
 
     # Define Config and Loggers
     conf = Config(logger)
@@ -89,7 +90,7 @@ def main():
 
     # Get tables from config
     table_list = conf.configs[environment]["tables"].split(",")
-    logger.info(f"TABLES={table_list}")
+    logger.info(f"Tables={table_list}")
 
     # Create the tables (if not exists) from .sql files
     loader = Loader(conf, logger)

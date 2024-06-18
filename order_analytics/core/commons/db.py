@@ -6,6 +6,7 @@ import sqlite3
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Tuple
+import os
 
 
 class DbManager:
@@ -13,12 +14,14 @@ class DbManager:
     A class for managing the database operations
     """
 
-    def __init__(self, logger):
+    def __init__(self, logger,conf):
         """
         Initializes the Database manager class object
         """
-        self.database = Path("orders.db")
+        self.conf = conf
+        self.database = Path(f"{self.conf.db_path}/orders.db")
         self.logger = logger
+
 
     def __repr__(self) -> str:
         """

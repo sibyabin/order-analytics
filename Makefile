@@ -7,9 +7,6 @@ PROJECT = order_analytics
 
 # set the project variables to the current directory
 export PROJECT_HOME := $(CURDIR)/order_analytics
-# export DATABASE_PATH := $(PROJECT_HOME)/database
-# export SQL_PATH := $(PROJECT_HOME)/sqls
-# export FILES_PATH := $(PROJECT_HOME)/files
 
 ifeq ($(shell uname), Linux)
 	ENV_PREFIX = $(VENV)/bin
@@ -61,10 +58,6 @@ test: lint        				## Run tests and generate coverage.
 	$(ENV_PREFIX)/coverage xml
 	$(ENV_PREFIX)/coverage html
 
-run: activate     				## Run app.
-	@echo "Going to run scripts"
-	python $(PROJECT)/main.py
-	@echo "Script run completed"
 
 build: activate   				## Build package.
 	@echo "Going to build packages"
