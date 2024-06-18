@@ -8,6 +8,7 @@ import logging
 import os
 import pprint
 import sys
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Dict
@@ -34,7 +35,7 @@ class Loader:
         """
         self.logger = logger
         self.config = conf
-        self.db = DbManager(self.logger)
+        self.db = DbManager(self.logger,self.config)
         self.batch = Batch(self.logger, self.db)
         self.utils = Utils(self.logger, self.config, self.db, self.batch)
 
@@ -48,12 +49,40 @@ class Loader:
         self.key = value
 
 
+def get_args() -> argparse.ArgumentParser:
+    """ """
+    parser = argparse.ArgumentParser(
+        description="Mart loading process for ABC Musical Instruments LTD"
+    )
+
+    parser.add_argument(
+        "-e",
+        "--environment",
+        help="Name of the environment(Only dev is available at this moment)",
+        type=str,
+        choices=["dev"],
+        required=True,
+        default="dev",
+    )
+    parser.add_argument(
+        "-f", "--filename", help="Name of the file to be processsed.", type=str, required=True
+    )
+
+    return parser
+
+
 def main():
     """
     main function and entry point of the etl load process
     """
-    environment = "dev"
+    parser = get_args()
+    args = vars(parser.parse_args())
+    environment = args["environment"].strip()
+    source_filename = args["filename"].strip()
+
     logger.info("==================BATCH START =================")
+    logger.info(f"Environment is `{environment}`")
+    logger.info(f"Filename to be processed is `{source_filename}`")
 
     # Define Config and Loggers
     conf = Config(logger)
@@ -61,7 +90,7 @@ def main():
 
     # Get tables from config
     table_list = conf.configs[environment]["tables"].split(",")
-    logger.info(f"TABLES={table_list}")
+    logger.info(f"Tables={table_list}")
 
     # Create the tables (if not exists) from .sql files
     loader = Loader(conf, logger)
@@ -82,7 +111,7 @@ def main():
     stg_tables = conf.configs[environment]["stg_tables"].split(",")
     file_columns = conf.configs[environment]["file_columns"]
     loader.logger.info(f"STAGE TABLES TO LOAD = {stg_tables}")
-    loader.utils.load_stg_table(stg_tables, file_columns, filename="orders.csv")
+    loader.utils.load_stg_table(stg_tables, file_columns, filename=source_filename)
 
     # Load the Dimension tables
     dim_tables = conf.configs[environment]["dim_tables"].split(",")
