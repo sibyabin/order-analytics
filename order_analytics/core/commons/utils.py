@@ -36,11 +36,35 @@ class Utils:
         return "Custom message from Utils"
 
     def read_file(self, location, file_name) -> str:
+        """
+        Read the contents of a file from a specified location.
+
+        This method opens the file at the given location with the provided file name and reads
+        its contents into a string.
+
+        Parameters:
+        location (str): The directory path where the file is located.
+        file_name (str): The name of the file to be read.
+
+        Returns:
+        str: The contents of the file as a string.
+        """
         with open(f"{location}/{file_name}", "r") as f:
             return f.read()
 
     def create_all_tables(self, tables: [str]) -> None:
-        """ """
+        """
+        Create multiple database tables.
+
+        This method takes a list of table names and creates each table in the database.
+        It takes the SQL statements to create the tables from the /sql/ddls/ folder
+
+        Parameters:
+        tables (List[str]): A list of table names to be created in the database.
+
+        Returns:
+        None
+        """
         for table in tables:
             sql_ddls_path = self.config.sql_ddls_path
             file_name = f"{sql_ddls_path}/{table}.sql"
@@ -51,7 +75,13 @@ class Utils:
 
     def load_mart_tables(self, tables: [str]) -> None:
         """
-        function to load the mart tables which involves transformation logic
+        function to load the mart tables which involves transformation logic.
+
+        Parameters:
+        tables (List[str]): A list of table names to be created in the database.
+
+        Returns:
+        None
         """
         self.logger.info(f"Going to load Mart tables")
         for table in tables:
@@ -120,6 +150,20 @@ class Utils:
         self.logger.info(f"date_dim loaded between {start_date} and {end_date}")
 
     def read_csv(self, location, file_name, names) -> pd.DataFrame:
+        """
+        Read a CSV file into a pandas DataFrame.
+
+        This method reads a CSV file from the specified location to a pandas df.
+
+        Parameters:
+        location (str): The directory path where the CSV file is located.
+        file_name (str): The name of the CSV file to be read.
+        names (List[str]): A list of column names to use for the DataFrame.
+
+        Returns:
+        pd.DataFrame: The loaded data as a pandas DataFrame.
+        """
+
         df = pd.read_csv(f"{location}/{file_name}", dtype="str", names=names, skiprows=1)
         return df
 
@@ -129,8 +173,7 @@ class Utils:
         Replaces tokens in a DataFrame with corresponding values from a dictionary.
 
         This method iterates over the DataFrame and replaces occurrences of keys from the
-        tokens dictionary with their corresponding values. The replacement is performed
-        on all string columns in the DataFrame.
+        tokens dictionary with their corresponding values.
 
         Parameters:
         - df (pd.DataFrame): The DataFrame in which token replacement will be performed.

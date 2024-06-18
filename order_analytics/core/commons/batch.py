@@ -10,7 +10,6 @@ from pathlib import Path
 class Batch:
     """
     A class for managing the database operations
-
     """
 
     def __init__(self, logger, db):
@@ -50,7 +49,12 @@ class Batch:
 
     def create_batch(self):
         """
-        TODO
+        Initialize a new batch operation.
+
+        This method sets up the necessary seed entries in batch_information table.
+
+        Returns:
+        None
         """
         try:
             self.logger.info("Going to create batch")
@@ -90,6 +94,14 @@ class Batch:
             self.logger.info("An operational error occurred:", str(e))
 
     def _get_batch_number(self) -> int:
+        """
+        Retrieve the current batch number.
+
+        This private method is used to get the number associated with the current batch operation.
+
+        Returns:
+        int: The current batch number.
+        """
         batch_num = 1
         try:
             batch_num = self.db.select_one(
@@ -124,11 +136,17 @@ class Batch:
                 self.logger.info("A SQLite operational error occurred:", str(e))
         return batch_num
 
-    def update_batch(self):
+    def update_batch(self) -> None:
+        """
+        Update the batch_information table.
+
+        Returns:
+        None
+        """
         self.logger.info("Going to update the batch_information table")
         sql = f""" UPDATE batch_information
-                    SET batch_status='COMPLETED', batch_endtime=CURRENT_TIMESTAMP, batch_updated_ts=CURRENT_TIMESTAMP, batch_updated_id ='{self.batch_id}'
-                WHERE batch_created_id = '{self.batch_id}'
+                        SET batch_status='COMPLETED', batch_endtime=CURRENT_TIMESTAMP, batch_updated_ts=CURRENT_TIMESTAMP, batch_updated_id ='{self.batch_id}'
+                   WHERE batch_created_id = '{self.batch_id}'
             """
         self.logger.info(sql)
         self.db.run_sql(sql)
