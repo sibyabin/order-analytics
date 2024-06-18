@@ -19,3 +19,4 @@ from stg_orders stg
 LEFT JOIN customer_dim cust ON cust.customer_name = UPPER(TRIM(stg.client_name))
 LEFT JOIN product_dim prod ON prod.product_name = TRIM(stg.product_name) AND prod.product_type = TRIM(stg.product_type)
 LEFT JOIN currency_dim curr ON curr.currency_code = UPPER(TRIM(stg.currency))
+WHERE stg.created_id = '{CREATED_BATCH_ID}'

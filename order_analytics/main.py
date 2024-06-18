@@ -48,12 +48,40 @@ class Loader:
         self.key = value
 
 
+def get_args() -> argparse.ArgumentParser:
+    """ """
+    parser = argparse.ArgumentParser(
+        description="Mart loading process for ABC Musical Instruments LTD"
+    )
+
+    parser.add_argument(
+        "-e",
+        "--environment",
+        help="Name of the environment(Only dev is available at this moment)",
+        type=str,
+        choices=["dev"],
+        required=True,
+        default="dev",
+    )
+    parser.add_argument(
+        "-f", "--filename", help="Name of the file to be processsed.", type=str, required=True
+    )
+
+    return parser
+
+
 def main():
     """
     main function and entry point of the etl load process
     """
-    environment = "dev"
+    parser = get_args()
+    args = vars(parser.parse_args())
+    environment = args["environment"].strip()
+    source_filename = args["filename"].strip()
+
     logger.info("==================BATCH START =================")
+    logger.info(f"environment={environment}")
+    logger.info(f"filename to be processed is {source_filename}")
 
     # Define Config and Loggers
     conf = Config(logger)
@@ -82,7 +110,7 @@ def main():
     stg_tables = conf.configs[environment]["stg_tables"].split(",")
     file_columns = conf.configs[environment]["file_columns"]
     loader.logger.info(f"STAGE TABLES TO LOAD = {stg_tables}")
-    loader.utils.load_stg_table(stg_tables, file_columns, filename="orders.csv")
+    loader.utils.load_stg_table(stg_tables, file_columns, filename=source_filename)
 
     # Load the Dimension tables
     dim_tables = conf.configs[environment]["dim_tables"].split(",")
