@@ -38,6 +38,7 @@ install: requirements-test.txt			## Virtual environment setup
 	python -m venv $(VENV) && . $(CMD) && $(PYTHON) -m pip install --upgrade pip setuptools
 	$(PIP) install -r requirements-test.txt
 	$(ENV_PREFIX)/pip install -e .[test]
+
 	@echo "Setup completed"
 
 activate: install
@@ -62,7 +63,7 @@ test: lint        				## Run tests and generate coverage.
 
 run: activate     				## Run app.
 	@echo "Going to run scripts"
-	$(PYTHON) $(PROJECT)/main.py
+	python $(PROJECT)/main.py
 	@echo "Script run completed"
 
 build: activate   				## Build package.
