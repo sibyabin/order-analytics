@@ -150,6 +150,9 @@ filename to the -f option while triggering the script
 python order_analytics/main.py -e dev -f orders_test_1.csv
 ```
 
+## Screencast
+https://1drv.ms/f/s!Ag168Up5vNdNhMlMX_UOdPdjHTAVjQ?e=zvkcmK 
+
 ## How to run the tests locally?
 
 Run pytest in the terminal and you should see the default tests written are getting executed and the coverage files are getting generated
