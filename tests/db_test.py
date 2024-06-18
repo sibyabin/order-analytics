@@ -1,8 +1,10 @@
 from order_analytics.core.commons.db import DbManager
 from order_analytics.core.commons.logger import Logger
+from order_analytics.core.commons.config import Config
 
-log = Logger("tests")
-dbmgr = DbManager(log)
+log = Logger("tests").get_logger()
+conf=Config(log)
+dbmgr = DbManager(log,conf)
 
 
 def test_select():
