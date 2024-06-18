@@ -13,6 +13,7 @@
 - [Project Links](#project-links)
 - [TODO](#todo)
 - [Using Makefile - Options available](#using-makefile---options-available)
+- [Pre-commit Hooks](#pre-commit-hooks)
 - [Other useful commands](#other-useful-commands)
 - [Author](#author)
 
@@ -38,35 +39,44 @@
 ![orders mart](docs/assets/orders_mart.svg)
 
 ## Project Structure
+
 ```
 ```
 
 ## How to setup the project locally?
 
 - ##### Clone the `order-analytics` github project repository
+
 ```bash
 git clone https://github.com/sibyabin/order-analytics.git
 ```
+
 - ##### Change the directory to the app folder
+
 ```bash
 cd order_analytics
 ```
 
 - ##### Create a virtual environment
+
 ```bash
 python -m venv venv
 ```
 
 - ##### Activate virtual environment (Note: please use commands according to your machines OS)
+
 ```bash
 source venv/bin/activate (for linux)  or  . venv/Scripts/activate  (for windows)
 ```
+
 - ##### Upgrade pip
+
 ```bash
 python  -m pip install --upgrade pip
 ```
 
 - ##### Install requirements
+
 ```bash
 pip install -r requirements-test.txt
 ```
@@ -77,11 +87,11 @@ The script accepts two paramters:
 
 **-e or --environment** : Use **dev** as value
 
-**-f or filename** : Use any file placed within **order_analytics/files** folder. You can load your own files by copying the file to the mentioend directory and then passign the correct 
+**-f or filename** : Use any file placed within **order_analytics/files** folder. You can load your own files by copying the file to the mentioend directory and then passign the correct
 filename to the -f option while triggering the script
 
 ```bash
-python order_analytics/main.py -e dev -f orders_test_1.csv 
+python order_analytics/main.py -e dev -f orders_test_1.csv
 ```
 
 ## How to run the tests locally?
@@ -91,7 +101,9 @@ Run pytest in the terminal and you should see the default tests written are gett
 ```bash
 pytest
 ```
-```
+
+```bash
+
 $ pytest
 ============================= test session starts =============================
 platform win32 -- Python 3.9.1, pytest-8.2.2, pluggy-1.5.0
@@ -107,6 +119,7 @@ tests\main_test.py .                                                     [100%]
 ```
 
 ## Project Links
+
 | Item | Description |
 | ------ | ------ |
 | Project Board | [Project Board](https://github.com/users/sibyabin/projects/3/views/1?layout=board) |
@@ -115,10 +128,12 @@ tests\main_test.py .                                                     [100%]
 
 
 ## TODO
-- Exception tables 
+
+- Exception tables
 - Batch status dashboard
 
 ------
+
 ## Using Makefile - Options available
 
 This project comes with a `Makefile` that contains a number of target options to simplify the different activities using short commands.
@@ -205,6 +220,16 @@ Run `make run` to run the code. This will
 | `make fmt` | To format the code |
 | `make lint` | To run the linter |
 | `make docs` | To build the docs.|
+
+## Pre-commit Hooks
+
+Use the pre-commit hooks defined in the project to fix format issues.
+
+```bash
+pre-commit install
+
+pre-commit run
+```
 
 ## Author
 
