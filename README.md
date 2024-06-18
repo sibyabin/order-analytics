@@ -41,6 +41,60 @@
 ## Project Structure
 
 ```
+.
+├── docs
+│   ├── assets
+│   │   └── orders_mart.svg
+│   ├── index.md
+│   └── shared
+│       └── Requirement.docx
+├── LICENSE
+├── Makefile
+├── mkdocs.yml
+├── order_analytics
+│   ├── config
+│   │   └── config.ini
+│   ├── core
+│   │   ├── commons
+│   │   │   ├── batch.py
+│   │   │   ├── config.py
+│   │   │   ├── db.py
+│   │   │   ├── __init__.py
+│   │   │   ├── logger.py
+│   │   │   └── utils.py
+│   │   └── __init__.py
+│   ├── database
+│   │   └── orders.db
+│   ├── files
+│   │   ├── orders.csv
+│   │   ├── orders_test_1.csv
+│   │   └── orders_test_2.csv
+│   ├── __init__.py
+│   ├── main.py
+│   ├── sqls
+│   │   ├── ddls
+│   │   │   ├── batch_information.sql
+│   │   │   ├── currency_dim.sql
+│   │   │   ├── customer_dim.sql
+│   │   │   ├── date_dim.sql
+│   │   │   ├── order_line_fact.sql
+│   │   │   ├── product_dim.sql
+│   │   │   └── stg_orders.sql
+│   │   └── transformations
+│   │       ├── currency_dim.sql
+│   │       ├── customer_dim.sql
+│   │       ├── order_line_fact.sql
+│   │       └── product_dim.sql
+│   └── VERSION
+├── README.md
+├── requirements-test.txt
+├── requirements.txt
+├── setup.py
+└── tests
+    ├── db_test.py
+    └── main_test.py
+
+
 ```
 
 ## How to setup the project locally?
@@ -79,6 +133,8 @@ python  -m pip install --upgrade pip
 
 ```bash
 pip install -r requirements-test.txt
+
+pip install -e .
 ```
 
 ## How to run the script locally?
@@ -87,7 +143,7 @@ The script accepts two paramters:
 
 **-e or --environment** : Use **dev** as value
 
-**-f or filename** : Use any file placed within **order_analytics/files** folder. You can load your own files by copying the file to the mentioend directory and then passign the correct
+**-f or --filename** : Use any file placed within **order_analytics/files** folder. You can load your own files by copying the file to the mentioend directory and then passign the correct
 filename to the -f option while triggering the script
 
 ```bash
