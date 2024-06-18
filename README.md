@@ -6,8 +6,13 @@
 - [Design Decisions](#design-decisions)
 - [Pre-requisites](#pre-requisites)
 - [Project deliverables](#project-deliverables)
-- [Makefile utilities](#makefile-utilities)
-- [How to run locally?](#how-to-run-locally)
+- [Project Structure](#project-structure)
+- [How to setup the project locally](#how-to-setup-the-project-locally)
+- [How to run the script locally?](#how-to-run-the-script-locally)
+- [How to run the tests locally?](#how-to-run-the-tests-locally)
+- [Project Links](#project-links)
+- [TODO](#todo)
+- [Using Makefile - Options available](#using-makefile---options-available)
 - [Other useful commands](#other-useful-commands)
 - [Author](#author)
 
@@ -32,11 +37,11 @@
 ### Data model diagrams
 ![orders mart](docs/assets/orders_mart.svg)
 
-### Project Structure
+## Project Structure
 ```
 ```
 
-## How to setup the project locally ?
+## How to setup the project locally?
 
 - ##### Clone the `order-analytics` github project repository
 ```bash
