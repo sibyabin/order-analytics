@@ -3,7 +3,7 @@
 `order-analytics` is a data engineering project for ABC Musical Instruments LTD, UK. The project caters to the order data analytics requirements using python and sqlite.
 
 ## Table of Contents
-
+- [Design Decisions](#design-decisions)
 - [Pre-requisites](#pre-requisites)
 - [Project deliverables](#project-deliverables)
 - [Makefile utilities](#makefile-utilities)
@@ -11,9 +11,16 @@
 - [Other useful commands](#other-useful-commands)
 - [Author](#author)
 
+## Design Decisions
+| Item | Decision |
+| ------ | ------ |
+| ORM tools or native approach to interact with databases | Chosen native approach as being a DWH, we may have to version control even the DDL's. Using an ORM gives less flexibility to move to a database deployment tools like flyway or dbdeploy or sqitch |
+|||
+|||
+
 ## Pre-requisites
 - Python 3.9
-- Make utility. Please check [Make ](https://gnuwin32.sourceforge.net/packages/make.htm) for installation in windows.
+- Make utility. **THIS IS OPTIONAL**. Please check [Make ](https://gnuwin32.sourceforge.net/packages/make.htm) for installation in windows.
 
 ## Project deliverables
 
@@ -25,9 +32,91 @@
 ### Data model diagrams
 ![orders mart](docs/assets/orders_mart.svg)
 
-## Makefile options
+### Project Structure
+```
+```
 
-This project comes with a `Makefile` that contains a number of target options to carry out different activities using simple commands.
+## How to setup the project locally ?
+
+- ##### Clone the `order-analytics` github project repository
+```bash
+git clone https://github.com/sibyabin/order-analytics.git
+```
+- ##### Change the directory to the app folder
+```bash
+cd order_analytics
+```
+
+- ##### Create a virtual environment
+```bash
+python -m venv venv
+```
+
+- ##### Activate virtual environment (Note: please use commands according to your machines OS)
+```bash
+source venv/bin/activate (for linux)  or  . venv/Scripts/activate  (for windows)
+```
+- ##### Upgrade pip
+```bash
+python  -m pip install --upgrade pip
+```
+
+- ##### Install requirements
+```bash
+pip install -r requirements-test.txt
+```
+
+## How to run the script locally?
+
+The script accepts two paramters:
+
+**-e or --environment** : Use **dev** as value
+
+**-f or filename** : Use any file placed within **order_analytics/files** folder. You can load your own files by copying the file to the mentioend directory and then passign the correct 
+filename to the -f option while triggering the script
+
+```bash
+python order_analytics/main.py -e dev -f orders_test_1.csv 
+```
+
+## How to run the tests locally?
+
+Run pytest in the terminal and you should see the default tests written are getting executed and the coverage files are getting generated
+
+```bash
+pytest
+```
+```
+$ pytest
+============================= test session starts =============================
+platform win32 -- Python 3.9.1, pytest-8.2.2, pluggy-1.5.0
+rootdir: E:\repo\order-analytics
+plugins: cov-5.0.0
+collected 3 items
+
+tests\db_test.py ..                                                      [ 66%]
+tests\main_test.py .                                                     [100%]
+
+============================== 3 passed in 1.01s ==============================
+(venv)
+```
+
+## Project Links
+| Item | Description |
+| ------ | ------ |
+| Project Board | [Project Board](https://github.com/users/sibyabin/projects/3/views/1?layout=board) |
+| Issues | [Issues](https://github.com/sibyabin/order-analytics/issues) |
+| Mapping Document | |
+
+
+## TODO
+- Exception tables 
+- Batch status dashboard
+
+------
+## Using Makefile - Options available
+
+This project comes with a `Makefile` that contains a number of target options to simplify the different activities using short commands.
 
 ```bash
 ❯ make
@@ -43,17 +132,6 @@ fmt               ## Format code using black & isort.
 lint              ## Run pep8, black, mypy linters.
 build             ## Build package.
 docs              ## Build the documentation.
-```
-
-## How to run locally?
-
-Below find the step by step instructions to run the code locally
-
-### Clone the repository
-
-```bash
-git clone https://github.com/sibyabin/order-analytics.git
-cd order-analytics
 ```
 
 ### Setting up your own virtual environment
@@ -122,17 +200,6 @@ Run `make run` to run the code. This will
 | `make fmt` | To format the code |
 | `make lint` | To run the linter |
 | `make docs` | To build the docs.|
-
-## Project Links
-
-- [Issues](https://github.com/sibyabin/order-analytics/issues)
-
-- [Project Board](https://github.com/users/sibyabin/projects/3/views/1?layout=board)
-
-## To do
-
-- Batch status dashboard
--
 
 ## Author
 
