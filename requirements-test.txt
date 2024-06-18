@@ -5,6 +5,7 @@ gitchangelog
 isort
 mkdocs
 mypy
+pandas==2.2.2
 pre-commit
 pytest
 pytest-cov

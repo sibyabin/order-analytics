@@ -39,7 +39,6 @@ class Logger:
         # Add ch to logger
         self.logger.addHandler(ch)
 
-
     def __str__(self) -> str:
         """
         TODO : for any later implementations
