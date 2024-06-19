@@ -147,7 +147,7 @@ The script accepts two paramters:
 filename to the -f option while triggering the script
 
 ```bash
-export PROJECT_HOME=_your/path/to/_**order_analytics**
+export PROJECT_HOME=your/path/to/order_analytics
 python order_analytics/main.py -e dev -f orders_test_1.csv
 ```
 
